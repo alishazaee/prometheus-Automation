@@ -3,7 +3,7 @@
 This code is prepared for automatic installation of Prometheus. No matter how many exporters you have, it will be automatically added to the monitoring list after starting the prometheus service. Although service discovery helps us a lot in prometheus automation, this can be another way for prometheus automation.
 
 # Prerequirements
-first of all you need clone the project and  gunzip the following files:\
+first of all you need to clone the project and  gunzip the following files:
 ```
 gunzip roles/exporters/tasks/node_exporter.gz
 gunzip roles/prometheus-server/tasks/prometheus.gz
