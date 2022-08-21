@@ -1,0 +1,48 @@
+
+#exporter installation & configuration 
+# Developed by Ali Shazaei
+
+- name: create group exporter 
+  group: 
+    name: exporter
+    state: present
+
+- name : create user exporter 
+  user: 
+    name: exporter
+    group: exporter
+    shell: /bin/bash
+    system: yes
+    state: present 
+
+- name: passwd for exporter 
+  expect: 
+    command: passwd exporter
+    responses: 
+      pass: "hello"
+
+
+- name: copy prometheus exporter to the remote hosts
+  copy: 
+    src: node_exporter
+    dest: /usr/local/bin/node_exporter
+    owner: exporter
+    group: exporter
+    mode: 755
+
+
+- name: copy service file to the remote systems
+  copy: 
+    src: exporter.service
+    dest: /usr/lib/systemd/system/node_exporter.service
+    owner: root
+    group: root
+
+ 
+- name: systemd exporter start 
+  service:
+    name: node_exporter 
+    enabled: yes
+    state: restarted
+
+

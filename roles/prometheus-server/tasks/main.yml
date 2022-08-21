@@ -1,0 +1,67 @@
+#Prometheus-server
+# Developed by Ali Shazaei
+- name: create group prometheus
+  group: 
+    name: prometheus
+    state: present
+
+- name : create user prometheus
+  user: 
+    name: prometheus
+    group: prometheus
+    shell: /bin/bash
+    system: yes
+    state: present 
+
+- name: passwd for prometheus
+  expect: 
+    command: passwd prometheus
+    responses: 
+      pass: "hello"
+
+
+- name: create directories
+  file: 
+    path: '{{ item }}'
+    state: directory
+    owner: prometheus
+    group: prometheus
+  loop: 
+    - /etc/prometheus
+    - /var/lib/prometheus/ 
+
+- name: copy prometheus server main files to the remote hosts
+  copy: 
+    src: '{{ item }}'
+    dest: /usr/local/bin/
+    owner: prometheus
+    group: prometheus
+    mode: 755
+  loop: 
+    - promtool
+    - prometheus
+    - consoles
+    - console_libraries/
+
+
+- name: copy service file to the remote systems
+  copy: 
+    src: prometheus.service
+    dest: /usr/lib/systemd/system/prometheus-server.service
+    owner: root
+    group: root
+    
+- name: copy template to the path 
+  template: 
+    src: prometheus.yml
+    dest: /etc/prometheus
+
+
+ 
+- name: systemd exporter start 
+  service:
+    name: prometheus-server
+    enabled: yes
+    state: restarted
+
+

@@ -1,0 +1,12 @@
+---
+
+- hosts: exporters
+  become: true
+  roles: 
+    - exporters
+
+- hosts: prometheus-server
+  become: true
+  roles: 
+    - prometheus-server
+
