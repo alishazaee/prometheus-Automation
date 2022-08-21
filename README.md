@@ -20,7 +20,7 @@ SERVER_IP_ADDRESS
 
 Also, you have to enable ssh on the side of the clients that you want to act as exporters:\
 ssh-copy-id USERNAME@EXPORTER_IP_ADDRESS
-
+# Run the code
 Now go to the main folder and run the following command to run the code.\
 ```
 ansible-playbook app-setup-yml
