@@ -9,7 +9,7 @@ gunzip roles/exporters/tasks/node_exporter.gz
 gunzip roles/prometheus-server/tasks/prometheus.gz
 gunzip roles/prometheus-server/tasks/promtool.gz
 ```
-You need to install Ansible to run this code. Then edit the /etc/ansible/hosts file to the following format.\
+You need to install Ansible to run this code. Then edit the /etc/ansible/hosts file to the following format.
 ```
 [exporters]
 EXPORTER_IP_ADDRESS
