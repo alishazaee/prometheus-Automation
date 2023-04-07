@@ -6,7 +6,7 @@
     - exporters
 
 - hosts: prometheus-server
-  become: true
+  become: true 
   roles: 
     - prometheus-server
 
