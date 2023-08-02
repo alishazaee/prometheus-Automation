@@ -7,6 +7,6 @@
 
 - hosts: prometheus-server
   become: true 
-  roles: 
+  roles:  
     - prometheus-server
 
